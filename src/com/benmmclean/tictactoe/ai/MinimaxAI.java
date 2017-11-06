@@ -12,7 +12,7 @@ public class MinimaxAI implements AIInterface{
 	
 	@Override
 	public void run() {
-		
+		//TODO
 	}
 	
 

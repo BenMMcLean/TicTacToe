@@ -2,9 +2,12 @@ package com.benmmclean.tictactoe.board;
 
 public class Board {
 	
+	//A grid of every piece
 	Piece[][] pieces;
+	//The width, height, and row size required for winning
 	int width,height,winNum;
 	
+	//Default game config
 	public Board(){
 		this(3,3,3);
 	}
@@ -13,6 +16,7 @@ public class Board {
 		pieces = new Piece[this.height=height][this.width=width];
 		this.winNum = winNum;
 		
+		//Populate the board
 		for(int y = 0; y < height; y++){
 			for(int x = 0; x < width; x++){
 				pieces[y][x] = Piece.N;
@@ -20,6 +24,7 @@ public class Board {
 		}
 	}
 	
+	//Return the piece at a position
 	public Piece get(int x, int y){
 		if(x >= width || y >= height){
 			return Piece.N;
@@ -28,6 +33,7 @@ public class Board {
 		return pieces[y][x];
 	}
 	
+	//Set the piece at a position
 	public Piece set(int x, int y, Piece v){
 		if(x >= width || y >= height){
 			return Piece.X;
@@ -38,14 +44,21 @@ public class Board {
 		return p;
 	}
 	
+	//Check if a position is empty
 	public boolean isEmpty(int x, int y){
 		return get(x,y) == Piece.X;
 	}
 	
+	//Check if someone has won
 	public Piece hasWon(){
 		for(int y = 0; y < height; y++){
 			for(int x = 0; x < width; x++){
+				//Get the starting piece
 				Piece s = get(x,y);
+				if(s == Piece.N){
+					continue;
+				}
+				//Check horizontal, vertical, and diagonal to see if filled with same piece as starting piece
 				boolean b1 = false, b2 = false, b3 = false;
 				for(int i = 1; i < winNum; i++){
 					if(get(x+i,y)!= s){b1=true;}
@@ -62,6 +75,7 @@ public class Board {
 		return Piece.N;
 	}
 	
+	//Check if the board is full
 	public boolean isTied(){
 		for(int y = 0; y < height; y++){
 			for(int x = 0; x < width; x++){

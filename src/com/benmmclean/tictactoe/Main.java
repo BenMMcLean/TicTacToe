@@ -9,10 +9,13 @@ import com.benmmclean.tictactoe.frame.IBoardFrameInterface;
 public class Main {
 
 	public static void main(String[] args) {
+		//Initialize the board
 		Board b = new Board();
 		
+		//Initialize an instance of Minimax AI
 		AIInterface ai = new MinimaxAI(b);
 		
+		//Create a board window
 		BoardFrame f = new BoardFrame(b, new IBoardFrameInterface(ai,b));
 		f.setVisible(true);
 	}
